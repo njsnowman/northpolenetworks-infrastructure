@@ -1,0 +1,39 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Backups
+*.bak
+*.backup
+*.old
+*.tmp
+
+# Secrets
+.env
+.env.*
+secrets.yml
+credentials.json
+*.key
+*.pem
+*.pfx
+*.crt
+
+# IDE
+.vscode/
+.idea/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
