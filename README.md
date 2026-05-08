@@ -6,7 +6,7 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 
 - `proxmox/` — Cluster, storage, VM templates, PBS
 - `networking/` — VLANs, switching, routing, WAN patterns
-- `firewall/` — OPNsense, NAT, hardening, access control
+- `firewall/` — UniFi/OPNsense, NAT, hardening, access control
 - `vms/` — Milestone/Avigilon deployment + tuning notes
 - `scripts/` — PowerShell/Bash helpers and automation
 - `documentation/` — SOPs, runbooks, templates
@@ -15,6 +15,17 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 - `runbooks/` — Step-by-step operational recovery procedures
 
 ## Current Documentation
+
+### UniFi / Home Network Backbone
+
+- `networking/unifi-current-backbone.md` — Current UniFi gateway, switching, VLAN, WiFi, and security overview
+- `networking/vlan-ip-plan.md` — VLAN IDs, subnets, DHCP status, and intended network purpose
+- `networking/switch-port-map.md` — Current switch port map and cleanup items
+- `networking/wifi-ssid-radio-plan.md` — SSIDs, APs, channel plan, and radio tuning notes
+- `firewall/unifi-firewall-policy-summary.md` — UniFi firewall/security posture summary
+- `firewall/port-forward-review.md` — Public exposure and port-forward hardening checklist
+- `diagrams/north-pole-network-topology.md` — Markdown topology documentation
+- `diagrams/north-pole-network-topology.mmd` — Mermaid topology source
 
 ### PiKVM / Out-of-Band Access
 
@@ -31,6 +42,19 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 | pve-north | 10.10.10.10 | PiKVM-01 |
 | pve | 10.10.10.11 | PiKVM-02 |
 
+## Current Core Network Summary
+
+| Network | VLAN | Subnet | Purpose |
+|---|---:|---:|---|
+| NP-Default | 1 | 192.168.10.0/24 | Main/default LAN |
+| NP-Lab | 2 | 10.10.10.0/24 | Lab/server infrastructure |
+| NP-Home IoT | 3 | 192.168.3.0/24 | IoT devices |
+| NP-Logan's World | 4 | 192.168.4.0/24 | Logan / child device network |
+| Not Default | 5 | 192.168.5.0/24 | Miscellaneous / holding network |
+| NorthPole-Lab-WiFi | 6 | 192.168.6.0/24 | Lab WiFi network |
+
 ## Security Note
 
 Do not store passwords, API keys, SIM account details, VPN keys, or customer credentials in this repository. Keep sensitive information in a secure password manager or vault.
+
+For firewall/port-forward documentation, use placeholders such as `WAN_PUBLIC_IP_REDACTED`, `TRUSTED_ADMIN_IP_REDACTED`, `VPN_ONLY`, or `CLOUDFLARE_PROTECTED` where appropriate.
