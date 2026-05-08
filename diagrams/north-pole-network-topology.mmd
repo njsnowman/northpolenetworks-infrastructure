@@ -1,0 +1,38 @@
+flowchart TD
+    WAN[Frontier Communications WAN]
+    GW[NP-GW-Ultra\nGateway / Router\n192.168.10.1]
+
+    WAN --> GW
+
+    GW -- Port 2 / GbE --> LIV[NP-Flex-1F-LIV\n192.168.10.206]
+    GW -- Port 3 / GbE --> CORE[NP-SW-CORE-R1\n192.168.10.8]
+    GW -- Port 4 / GbE --> LOG[NP-Flex-1F-LOG\n192.168.10.221]
+
+    LIV -- Port 2 / FE --> TV[Living Room Hisense TV\n192.168.10.126]
+
+    LOG -- Port 2 / GbE --> U71F[NP-U7-1F AP\n192.168.10.7]
+
+    CORE -- Port 6 / GbE --> DESK[NP-USW-Flex-2F-Desk\n192.168.10.2]
+    CORE -- Ports 7/8 LAG --> ACCR2[NP-SW-ACC-R2\n192.168.10.245]
+
+    DESK -- Port 4 / GbE --> U72F[NP-U7-2F AP\n192.168.10.6]
+
+    ACCR2 -- Ports 7/8 LAG --> ACCR3[NP-SW-ACC-R3\n192.168.10.164]
+    ACCR2 -- Port 1 / GbE --> NAS[NP-NAS-NIC1\n10.10.10.5]
+    ACCR2 -. Ports 3/4 .-> PBS[NP-PBS / Proxmox Backup Server\nVerify active port]
+
+    ACCR3 -- Port 1 / GbE --> PVE[PVE South / pve\n10.10.10.11]
+    ACCR3 -- Port 2 / GbE --> PVENORTH[pve-north / NP-MS-MAN-S\n10.10.10.10]
+    ACCR3 -- Port 3 / GbE --> LAPTOP[Legion i9 Laptop\n192.168.10.127]
+    ACCR3 -- Port 6 / FE --> SDS[Uniden SDS200\n10.10.10.241]
+
+    subgraph VLANs[Network / VLANs]
+        V1[NP-Default\nVLAN 1\n192.168.10.0/24]
+        V2[NP-Lab\nVLAN 2\n10.10.10.0/24]
+        V3[NP-Home IoT\nVLAN 3\n192.168.3.0/24]
+        V4[NP-Logan's World\nVLAN 4\n192.168.4.0/24]
+        V5[Not Default\nVLAN 5\n192.168.5.0/24]
+        V6[NorthPole-Lab-WiFi\nVLAN 6\n192.168.6.0/24]
+    end
+
+    GW -. Routes / DHCP .-> VLANs
