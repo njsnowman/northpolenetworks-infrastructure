@@ -35,12 +35,17 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 - `docs/hardware-inventory.md` — Node, PiKVM, and supporting service inventory
 - `runbooks/emergency-proxmox-recovery-using-pikvm.md` — Emergency recovery procedure when SSH, Proxmox UI, or normal networking is unavailable
 
+### Proxmox Backup Server
+
+- `docs/pbs-current-state.md` — Current PBS network design, recovery procedures, emergency network restoration service, and future 10Gb planning
+
 ## Current Proxmox Node Assignments
 
 | Node | Management IP | Emergency Console |
 |---|---:|---|
 | pve-north | 10.10.10.10 | PiKVM-01 |
 | pve | 10.10.10.11 | PiKVM-02 |
+| pbs | 10.10.10.12 | Local 7-inch recovery console |
 
 ## Current Core Network Summary
 
@@ -52,6 +57,31 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 | NP-Logan's World | 4 | 192.168.4.0/24 | Logan / child device network |
 | Not Default | 5 | 192.168.5.0/24 | Miscellaneous / holding network |
 | NorthPole-Lab-WiFi | 6 | 192.168.6.0/24 | Lab WiFi network |
+
+## Current Infrastructure Notes
+
+### PBS Recovery State
+
+PBS currently uses a persistent systemd oneshot recovery service to ensure `enp1s0` reliably comes online after boot.
+
+Management services:
+
+```text
+PBS Web UI: https://10.10.10.12:8007
+PBS SSH:    root@10.10.10.12
+```
+
+### Deferred 10Gb Plan
+
+10Gb networking was evaluated and documented but intentionally deferred for now.
+
+Future preferred architecture:
+
+- Dedicated SFP+ 10Gb backup network
+- DAC cabling between nodes and PBS
+- Separate management and storage traffic
+- Intel X520/X710 class NICs
+- MikroTik CRS309 or similar SFP+ switch
 
 ## Security Note
 
