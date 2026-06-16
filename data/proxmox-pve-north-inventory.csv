@@ -1,0 +1,42 @@
+host,type,id,name,status,primary_lan_ip,bridge,notes
+pve-north,VM,100,vm-proscan,running,10.10.10.154,vmbr0,ProScan scanner service VM
+pve-north,VM,101,Windows-11-Template,stopped,,vmbr0,Template
+pve-north,VM,102,vm-op25,stopped,,vmbr0,OP25 radio VM
+pve-north,VM,103,vm-bitwarden,running,10.10.10.85,vmbr0,Bitwarden / vault services
+pve-north,VM,104,Milestone-Template-old,stopped,,vmbr0,Legacy template
+pve-north,VM,105,Ubuntu-Template,stopped,,vmbr0,Template
+pve-north,VM,108,VM-WIN11-Template,stopped,,vmbr0,Template
+pve-north,VM,110,VM-TEST-1,stopped,,vmbr1,Test VM on secondary bridge
+pve-north,VM,112,vm-ADS-B,running,10.10.10.108,vmbr0,ADS-B receiver stack and dashboards
+pve-north,VM,113,AAS-VM-S-1,stopped,,vmbr0,Deferred / inactive
+pve-north,VM,115,vm-dragonos,stopped,,vmbr0,DragonOS radio/security lab VM
+pve-north,VM,116,haos15.2,running,10.10.10.218,vmbr0,Home Assistant OS
+pve-north,VM,118,vm-nginx-p,running,10.10.10.100,vmbr0,Primary reverse proxy
+pve-north,VM,120,vm-node-exporter,running,10.10.10.103,vmbr0,Monitoring/exporter VM
+pve-north,VM,121,vm-nginx-s,running,,vmbr0,No LAN IPv4 detected in audit
+pve-north,VM,122,vm-nextcloud,running,10.10.10.200,vmbr0,Nextcloud
+pve-north,VM,123,vm-mattermost,running,10.10.10.104,vmbr0,Mattermost collaboration stack
+pve-north,VM,124,vm-prometheus,running,10.10.10.105,vmbr0,Prometheus metrics collection
+pve-north,VM,125,vm-grafana,running,10.10.10.106,vmbr0,Grafana dashboards
+pve-north,VM,126,vm-utils,running,,vmbr0,No LAN IPv4 detected in audit
+pve-north,VM,127,vm-frigate,stopped,,vmbr0,Frigate NVR / video analytics VM
+pve-north,VM,130,vm-matrix,stopped,,vmbr0,Matrix service VM
+pve-north,VM,133,vm-sdrtrunk,stopped,,vmbr0,SDRTrunk radio VM
+pve-north,VM,135,vm-intercept,running,10.10.10.132,vmbr0,Intercept/radio services
+pve-north,VM,136,vm-watchtower,running,,vmbr0,No LAN IPv4 detected in audit
+pve-north,VM,139,vm-meshops-dev,running,,vmbr0,MeshOps development VM; no LAN IPv4 detected in audit
+pve-north,LXC,106,ct-mqtt,running,10.10.10.215,vmbr0,MQTT broker services
+pve-north,LXC,107,ct-homepage,running,10.10.10.107,vmbr0,Homepage / Mission Control dashboard
+pve-north,LXC,109,ct-rustdesk,stopped,,vmbr0,RustDesk container
+pve-north,LXC,111,ct-TAK,stopped,,vmbr0,TAK container
+pve-north,LXC,114,ct-meshmonitor,running,10.10.10.223,vmbr0,MeshMonitor service container
+pve-north,LXC,117,ct-influxdb,running,10.10.10.117,vmbr0,InfluxDB metrics/time-series storage
+pve-north,LXC,119,np-tailscale-gateway,running,10.10.10.244,vmbr0,Tailscale gateway / route advertisement host
+pve-north,LXC,128,ct-aprstac-rf,stopped,,vmbr0,APRS/TAC RF container
+pve-north,LXC,129,ct-hookshot,stopped,,vmbr0,Hookshot integration container
+pve-north,LXC,131,ct-meshcore,stopped,10.10.10.147,vmbr0,Static IP recorded while stopped
+pve-north,LXC,132,ct-vrs,stopped,,vmbr0,Virtual Radar Server container
+pve-north,LXC,134,ct-nodered,running,,vmbr0,No LAN IPv4 detected in audit
+pve-north,LXC,137,ct-weather,running,10.10.10.78,vmbr0,Weather/home dashboard service
+pve-north,LXC,138,ct-ntfy,running,10.10.10.157,vmbr0,Self-hosted ntfy push notifications
+pve-north,LXC,140,ct-portainer,stopped,,vmbr0,Portainer container
