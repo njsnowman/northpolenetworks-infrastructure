@@ -13,8 +13,16 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 - `diagrams/` — Topology and architecture diagrams
 - `docs/` — Infrastructure reference documentation
 - `runbooks/` — Step-by-step operational recovery procedures
+- `data/` — Sanitized inventory exports and reference datasets
 
 ## Current Documentation
+
+### Proxmox / Server Layout
+
+- `docs/proxmox-current-layout.md` — Current active `pve-north` Proxmox bridge layout, routing, VM inventory, and LXC inventory
+- `data/proxmox-pve-north-inventory.csv` — Sanitized `pve-north` VM/LXC inventory export
+- `docs/proxmox-node-access-plan.md` — Access model for current Proxmox node access and emergency recovery
+- `docs/hardware-inventory.md` — Node, PiKVM, and supporting service inventory
 
 ### UniFi / Home Network Backbone
 
@@ -30,9 +38,7 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 ### PiKVM / Out-of-Band Access
 
 - `docs/pikvm-out-of-band-access.md` — PiKVM V4 + LTE out-of-band access design
-- `docs/proxmox-node-access-plan.md` — Access model for pve-north and pve
 - `docs/lte-failover-access.md` — LTE failover rules and security guidance
-- `docs/hardware-inventory.md` — Node, PiKVM, and supporting service inventory
 - `runbooks/emergency-proxmox-recovery-using-pikvm.md` — Emergency recovery procedure when SSH, Proxmox UI, or normal networking is unavailable
 
 ### Proxmox Backup Server
@@ -41,11 +47,11 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 
 ## Current Proxmox Node Assignments
 
-| Node | Management IP | Emergency Console |
-|---|---:|---|
-| pve-north | 10.10.10.10 | PiKVM-01 |
-| pve | 10.10.10.11 | PiKVM-02 |
-| pbs | 10.10.10.12 | Local 7-inch recovery console |
+| Node | Management IP | Current State | Emergency Console |
+|---|---:|---|---|
+| pve-north | 10.10.10.10 | Active Proxmox host | PiKVM-01 |
+| pve | 10.10.10.11 | Legacy/deferred; not currently active | PiKVM-02 |
+| pbs | 10.10.10.12 | Backup server | Local 7-inch recovery console |
 
 ## Current Core Network Summary
 
@@ -59,6 +65,17 @@ Infrastructure architecture, deployment templates, automation scripts, and engin
 | NorthPole-Lab-WiFi | 6 | 192.168.6.0/24 | Lab WiFi network |
 
 ## Current Infrastructure Notes
+
+### Active Proxmox State
+
+`pve-north` is the current active Proxmox node and is documented as the source of truth for the live VM/LXC layout.
+
+Current management paths:
+
+```text
+pve-north Web UI: https://10.10.10.10:8006
+pve-north SSH:    root@10.10.10.10
+```
 
 ### PBS Recovery State
 
@@ -88,3 +105,5 @@ Future preferred architecture:
 Do not store passwords, API keys, SIM account details, VPN keys, or customer credentials in this repository. Keep sensitive information in a secure password manager or vault.
 
 For firewall/port-forward documentation, use placeholders such as `WAN_PUBLIC_IP_REDACTED`, `TRUSTED_ADMIN_IP_REDACTED`, `VPN_ONLY`, or `CLOUDFLARE_PROTECTED` where appropriate.
+
+MAC addresses, private keys, full VPN node details, and customer access details should not be committed to public documentation.
